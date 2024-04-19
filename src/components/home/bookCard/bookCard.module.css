@@ -1,0 +1,46 @@
+.card{
+    flex: 1 1 18%;
+    max-width: 18%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    background-color: #ecf0f1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 10px;
+}
+
+.card:hover {
+    transform: scale(1.05); /* Scale up the card slightly */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Optionally, increase the shadow for better effect */
+  }
+
+.heartIcon{
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.cover{
+    width: 100%;
+    height: auto;
+}
+
+.content{
+    padding: 16px;
+}
+
+.title{
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+    margin-bottom: 8px;
+}
+
+.category, .author{
+    font-size: 14px;
+    color: #777;
+    margin: 0;
+}
