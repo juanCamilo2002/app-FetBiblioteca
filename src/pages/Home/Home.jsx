@@ -1,6 +1,6 @@
-import Banner from "../components/home/banner/Banner"
-import BookCard from "../components/home/bookCard/BookCard"
-import TopBar from "../components/topbar/TopBar"
+import Banner from "../../components/home/banner/Banner"
+import BookCard from "../../components/home/bookCard/BookCard"
+import TopBar from "../../components/topbar/TopBar"
 import styles from "./home.module.css"
 
 const Home = () => {
