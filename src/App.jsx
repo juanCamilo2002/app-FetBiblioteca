@@ -6,6 +6,8 @@ import ViewBook from './pages/ViewBook/ViewBook';
 import AdminLayout from './pages/admin/Layout/AdminLayout';
 import Dashboard from './pages/admin/dashboard/Dashboard';
 import { AsideProvider } from './context/AsideContext';
+import AddBook from './pages/admin/AddBook/AddBook';
+import UpdateBook from './pages/admin/UpdateBook/UpdateBook';
 
 
 function App() {
