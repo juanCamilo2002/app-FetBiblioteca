@@ -1,4 +1,3 @@
-import { BiBookOpen } from "react-icons/bi";
 import { FaRegCalendar, FaRegCalendarCheck, FaRegUser } from "react-icons/fa";
 import { FiBook } from "react-icons/fi";
 import { RxDashboard } from "react-icons/rx";
