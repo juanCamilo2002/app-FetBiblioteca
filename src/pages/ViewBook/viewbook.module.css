@@ -19,10 +19,10 @@
 }
 
 .button{
-    background-color: #0C9F0F ;
+    background-color: var(--bg-green) ;
     text-transform: uppercase;
     cursor: pointer;
-    color: #fff;
+    color: var(--bg-white);
     border: none;
     padding: 10px;
     width: 100%;
