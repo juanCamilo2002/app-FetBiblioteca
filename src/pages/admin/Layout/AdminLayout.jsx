@@ -12,7 +12,7 @@ const AdminLayout = () => {
     const { isAsideOpen, toggleAside } = useContext(AsideContext);
     return (
         <div className={styles.container}>
-            <div className={`${styles.aside} ${ isAsideOpen ? styles.active : ""}`}>
+            <div className={`${styles.aside} ${isAsideOpen ? styles.active : ""}`}>
                 <button className={styles.btnToggle} onClick={toggleAside}>
                     <IoIosArrowBack />
                 </button>
@@ -46,7 +46,9 @@ const AdminLayout = () => {
                         <CiSearch size={20} color='gray' />
                     </div>
                 </div>
-                <Outlet />
+                <div className={styles.containerContent}>
+                    <Outlet />
+                </div>
             </div>
         </div>
     )
