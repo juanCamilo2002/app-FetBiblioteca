@@ -50,6 +50,11 @@
     border-radius: 5px;
     color: var(--bg-white);
     font-size: 15px;
+    text-decoration: none;
+}
+
+.btnAdd:hover, .btnBack:hover{
+    background-color: var(--bg-green-dark);
 }
 
 .iconArrow{
