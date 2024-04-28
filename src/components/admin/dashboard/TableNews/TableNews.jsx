@@ -1,7 +1,10 @@
 import { GrSchedule } from 'react-icons/gr'
 import styles from './tablenews.module.css'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const TableNews = () => {
+    
     return (
         <div className={styles.container}>
             <div className={styles.top}>
@@ -13,7 +16,7 @@ const TableNews = () => {
                     <thead>
                         <tr>
                             <th>Usuario</th>
-                            <th>Libro</th>
+                            <th>libro</th>
                             <th>Fecha incial</th>
                             <th>Fecha limite</th>
                             <th>Estado</th>
@@ -28,7 +31,7 @@ const TableNews = () => {
                             </td>
                             <td>
                                 <div>
-                                   Anatomia
+                                    Anatomia
                                 </div>
                             </td>
                             <td>
@@ -74,7 +77,7 @@ const TableNews = () => {
                                 </div>
                             </td>
                         </tr>
-                       
+
                         <tr className={styles.delivered}>
                             <td >
                                 <div className={styles.firstCell}>
@@ -156,7 +159,7 @@ const TableNews = () => {
                                 </div>
                             </td>
                         </tr>
-                       
+
                     </tbody>
                 </table>
             </div>

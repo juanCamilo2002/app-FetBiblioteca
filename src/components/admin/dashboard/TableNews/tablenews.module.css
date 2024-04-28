@@ -21,11 +21,12 @@
     .content {
         overflow-x: auto;
         width: 100%;
-
+        
         table {
             width: 100%;
             border-collapse: collapse;
             text-align: left;
+            min-width: 300px;
 
             thead {
                 tr {
@@ -52,7 +53,7 @@
                             display: flex;
                             justify-content: center;
                             align-items: center;
-                           
+                           min-width: 160px;
                         }
                         
                         .firstCell{
