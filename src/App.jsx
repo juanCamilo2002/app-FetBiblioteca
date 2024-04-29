@@ -10,6 +10,7 @@ import AddBook from './pages/admin/AddBook/AddBook';
 import UpdateBook from './pages/admin/UpdateBook/UpdateBook';
 import Book from './pages/admin/books/Book';
 import Reservation from './pages/admin/reservations/Reservation';
+import User from './pages/admin/users/User';
 
 function App() {
   return (
@@ -25,7 +26,8 @@ function App() {
           <Route path='/admin' element={<AdminLayout />}>
             <Route path='dashboard' index element={<Dashboard />} />
             <Route path='books' index element={<Book/>} />
-            <Route path='reservations' index element={<Reservation/>} />
+            <Route path='reservations' index element={<Reservation/>} />   
+            <Route path='users' index element={<User/>} />   
 
           </Route>
           
