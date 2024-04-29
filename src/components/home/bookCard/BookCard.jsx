@@ -7,7 +7,7 @@ const BookCard = ({ book }) => {
         <div className={styles.card}>
             <CiHeart size={30} color="white" className={styles.heartIcon} />
             <img
-                src={book.image ? book.image : "https://via.placeholder.com/400x500/4543t4j"}
+                src={book.image ? book.image : "https://via.placeholder.com/250x400/4543t4j"}
                 alt=""
                 className={styles.cover}
             />

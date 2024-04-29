@@ -23,3 +23,14 @@ export const getBooks = async () =>{
     }
 }
 
+
+export const SignIn = async (userCredential, dispatch) =>{
+    dispatch({type: "LOGIN_START"});
+    const customApiInstance = createAxiosInstance();
+    try {
+        const response = await customApiInstance.post("/auth/login",userCredential);
+        dispatch({type: "LOGIN_SUCCESS", payload: response.data});
+    } catch (error) {
+        dispatch({type: "LOGIN_FAILURE", payload: error});
+    }
+};
