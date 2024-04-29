@@ -24,12 +24,14 @@ export const getBooks = async () =>{
 }
 
 
-export const SignIn = async (userCredential, dispatch) =>{
+export const SignIn = async (userCredential, dispatch, history) =>{
     dispatch({type: "LOGIN_START"});
     const customApiInstance = createAxiosInstance();
     try {
         const response = await customApiInstance.post("/auth/login",userCredential);
-        dispatch({type: "LOGIN_SUCCESS", payload: response.data});
+        const user = response.data;
+        dispatch({type: "LOGIN_SUCCESS", payload: user});
+        user.isAdmin ? history("/admin/dashboard") : history("/");
     } catch (error) {
         dispatch({type: "LOGIN_FAILURE", payload: error});
     }

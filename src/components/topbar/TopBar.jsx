@@ -4,8 +4,11 @@ import { FiHeart } from "react-icons/fi";
 import { CiSearch } from "react-icons/ci";
 import NavBar from '../navbar/NavBar';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
 const TopBar = () => {
+    const { user, logout } = useContext(AuthContext);
     return (
         <div className={styles.Container}>
             <div className={styles.topContainer}>
@@ -22,11 +25,13 @@ const TopBar = () => {
                     <div className={styles.savedContainerCount}>
                         <span>0</span>
                     </div>
-                    <Link to="/login" className={styles.btnSesion}>Entrar</Link>
+                    {user ? (
+                    <button onClick={logout} className={styles.btnSesion}>Salir</button>
+                ) : <Link to="/login" className={styles.btnSesion}>Entrar</Link>}
                 </div>
-
+               
             </div>
-            <NavBar/>
+            <NavBar />
         </div>
     )
 }

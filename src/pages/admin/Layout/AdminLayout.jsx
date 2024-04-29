@@ -5,11 +5,15 @@ import { CiSearch } from "react-icons/ci";
 import { navLinks } from "../../../util/navLinks";
 import { RiShutDownLine } from 'react-icons/ri';
 import { IoIosArrowBack } from 'react-icons/io';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AsideContext } from '../../../context/AsideContext';
+import { AuthContext } from '../../../context/AuthContext';
 
 const AdminLayout = () => {
     const { isAsideOpen, toggleAside } = useContext(AsideContext);
+    const {logout } = useContext(AuthContext);
+    
+ 
     return (
         <div className={styles.container}>
             <div className={`${styles.aside} ${isAsideOpen ? styles.active : ""}`}>
@@ -35,7 +39,7 @@ const AdminLayout = () => {
                         ))}
                     </ul>
                 </div>
-                <div className={styles.session}>
+                <div className={styles.session} onClick={logout}>
                     <button> <RiShutDownLine size={20} /> Cerrar Sesión</button>
                 </div>
             </div>

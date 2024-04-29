@@ -6,6 +6,7 @@ import { SignIn } from '../../../../util/api';
 import { useContext } from 'react';
 import { AuthContext } from '../../../../context/AuthContext';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 
 const validationSchema = Yup.object().shape({
@@ -18,6 +19,7 @@ const validationSchema = Yup.object().shape({
 
 const Left = () => {
   const { user, isFetching, error, dispatch } = useContext(AuthContext);
+  const history = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -25,7 +27,8 @@ const Left = () => {
     },
     validationSchema: validationSchema,
     onSubmit: values => {
-      SignIn(values, dispatch);
+      SignIn(values, dispatch, history);
+      
     }
   });
 
