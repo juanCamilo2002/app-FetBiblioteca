@@ -127,7 +127,7 @@ function Book() {
       <div className={styles.container}>
         <div className={styles.btnContainer}>
           <Link to={"/addbook"} className={styles.btnAddBook}>
-            <BsPlus size={15} />
+            <BsPlus size={20} />
             Agregar Libro
           </Link>
         </div>

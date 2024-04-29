@@ -9,7 +9,7 @@ import { AsideProvider } from './context/AsideContext';
 import AddBook from './pages/admin/AddBook/AddBook';
 import UpdateBook from './pages/admin/UpdateBook/UpdateBook';
 import Book from './pages/admin/books/Book';
-
+import Reservation from './pages/admin/reservations/Reservation';
 
 function App() {
   return (
@@ -25,12 +25,13 @@ function App() {
           <Route path='/admin' element={<AdminLayout />}>
             <Route path='dashboard' index element={<Dashboard />} />
             <Route path='books' index element={<Book/>} />
+            <Route path='reservations' index element={<Reservation/>} />
 
           </Route>
           
         <Route path='/addbook' element={<AddBook/>}/>
         <Route path='/updatebook' element={<UpdateBook/>}/>
-
+        
       </Routes>
       </BrowserRouter>
     </AsideProvider>
