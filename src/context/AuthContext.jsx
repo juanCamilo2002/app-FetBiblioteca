@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        const logoutTimer = setTimeout(logout, 3600000);
+        const logoutTimer = setTimeout(logout, 3300000);
         return () => clearTimeout(logoutTimer);
     }, [state.user]);
     return (
