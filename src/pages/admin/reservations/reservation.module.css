@@ -19,7 +19,7 @@
 .btnAddBook{
     display: flex;
     align-items: center;
-    width: 158px;
+    width: 150px;
     text-decoration: none;
     cursor: pointer;
     border: none;
@@ -58,5 +58,3 @@
     padding: 1px;
     margin: 4px;
 }
-
-
