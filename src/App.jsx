@@ -6,6 +6,7 @@ import ViewBook from './pages/ViewBook/ViewBook';
 import AdminLayout from './pages/admin/Layout/AdminLayout';
 import Dashboard from './pages/admin/dashboard/Dashboard';
 import { AsideProvider } from './context/AsideContext';
+import Adduser from './pages/admin/adduser/Adduser';
 import AddBook from './pages/admin/AddBook/AddBook';
 import UpdateBook from './pages/admin/UpdateBook/UpdateBook';
 import Book from './pages/admin/books/Book';
@@ -39,7 +40,9 @@ function App() {
 
 
           <Route path='/addbook' element={<AddBook />} />
-          <Route path='/updatebook' element={<UpdateBook />} />
+          <Route path='/adduser' element={<Adduser />} />
+          <Route path='/updatebook' element={<UpdateBook/>} />
+         
 
         </Routes>
       </BrowserRouter>
