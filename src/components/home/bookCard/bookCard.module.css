@@ -1,13 +1,15 @@
 .card{
     flex: 1 1 18%;
     max-width: 18%;
-    border-radius: 8px;
+    min-width: 250px;
+    border-radius: 5px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
-    background-color: #ecf0f1;
+    background-color: #d8fad1;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin-top: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);;
 }
 
 .card:hover {
@@ -25,7 +27,8 @@
 
 .cover{
     width: 100%;
-    height: auto;
+    height: 400px;
+    object-fit: cover;
 }
 
 .content{
@@ -43,4 +46,33 @@
     font-size: 14px;
     color: #777;
     margin: 0;
+}
+
+.bottom{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+    margin-bottom: 20px;
+}
+
+.btn{
+    display: block;
+    width: 90%;
+    border: none;
+    padding: 8px 0 ;
+    background-color: var(--bg-green);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 16px;
+    cursor: pointer;
+    font-size: 15px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+
+    &:hover{
+        background-color: #005D03;
+    }
 }

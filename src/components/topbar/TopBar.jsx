@@ -3,6 +3,7 @@ import styles from './topbar.module.css';
 import { FiHeart } from "react-icons/fi";
 import { CiSearch } from "react-icons/ci";
 import NavBar from '../navbar/NavBar';
+import { Link } from 'react-router-dom';
 
 const TopBar = () => {
     return (
@@ -21,7 +22,7 @@ const TopBar = () => {
                     <div className={styles.savedContainerCount}>
                         <span>0</span>
                     </div>
-                    <a href="" className={styles.btnSesion}>Entrar</a>
+                    <Link to="/login" className={styles.btnSesion}>Entrar</Link>
                 </div>
 
             </div>
