@@ -35,3 +35,28 @@
     background-color: var(--bg-green-dark);
 }
 
+
+
+.btns{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btnEdit{
+    background-color: var(--bg-green);
+}
+
+.btnDelete{
+    cursor: pointer;
+    background-color: #fd4d4d;
+    
+}
+
+.btnEdit, .btnDelete{
+    color: var(--bg-white);
+    border-radius: 5px;
+    padding: 1px;
+    margin: 4px;
+}
+
+

@@ -1,11 +1,13 @@
 import React from 'react'
 import styles from "./update.module.css"
 import { SlArrowLeft } from "react-icons/sl";
+import { Link } from 'react-router-dom';
+
 function UpdateBook() {
   return (
     // Formulario para actualizar libros
     <div className={styles.addbookContainer}>
-      <button className={styles.btnBack}><SlArrowLeft size={10} className={styles.iconArrow}/>Regresar</button>
+      <Link to={"/admin/books"} className={styles.btnBack}><SlArrowLeft size={10} className={styles.iconArrow}/>Regresar</Link>
       <h1 className={styles.title}>Actualizar Libro</h1>
       <form className={styles.formBook} action="">
         <div className={styles.divOne}>

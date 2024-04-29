@@ -2,11 +2,11 @@ import React from "react";
 import styles from "./book.module.css";
 import DataTable from "react-data-table-component";
 import { BsPlus } from "react-icons/bs";
-import {Link} from "react-router-dom"
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { BiEdit } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 function Book() {
-  
-
   const columnas = [
     {
       name: "Título",
@@ -16,38 +16,42 @@ function Book() {
     {
       name: "Autor",
       selector: (row) => row.autor,
-      sortable: true
+      sortable: true,
     },
     {
       name: "Editorial",
       selector: (row) => row.editorial,
-      sortable: true
+      sortable: true,
     },
     {
       name: "Categoría",
       selector: (row) => row.categoria,
-      sortable: true
+      sortable: true,
     },
     {
       name: "Estado",
       selector: (row) => row.estado,
+      sortable: true,
     },
     {
       name: "Stock",
       selector: (row) => row.stock,
+      sortable: true,
     },
-   {
-      name:"Acciones",
+    {
+      name: "Acciones",
       button: true,
       cell: () => (
-        <>
-          <Link to={"/updatebook"} className={styles.btnEdit}>Editar</Link>
-          <button className={styles.btnDelete}>Eliminar</button>
-        </>
-      )
-   }
-   
-
+        <div className={styles.btns}>
+          <Link to={"/updatebook"} >
+            <BiEdit size={23} className={styles.btnEdit}/>
+          </Link>
+          <Link >
+            <RiDeleteBin6Line size={23} className={styles.btnDelete} />
+          </Link>
+        </div>
+      ),
+    },
   ];
   const data = [
     {
@@ -111,24 +115,33 @@ function Book() {
     console.log("Seleccionar filas", selectRows);
   };
 
+  const paginationComponentOptions = {
+    rowsPerPageText: 'Filas por página',
+    rangeSeparatorText: 'de',
+    selectAllRowsItem: true,
+    selectAllRowsItemText: 'Todos',
+  };
   return (
     <div>
       <h1 className={styles.titleBook}>Libros</h1>
       <div className={styles.container}>
-      <div className={styles.btnContainer}>
-      <Link to={"/addbook"} className={styles.btnAddBook}><BsPlus size={15} />Agregar Libro</Link>
-      </div >
-      <DataTable 
-        columns={columnas}
-        data={data}
-        selectableRows
-        onSelectedRowsChange={handleChange}
-        paginationPerPage={5}
-        pagination
-        fixedHeader
-      />
+        <div className={styles.btnContainer}>
+          <Link to={"/addbook"} className={styles.btnAddBook}>
+            <BsPlus size={15} />
+            Agregar Libro
+          </Link>
+        </div>
+        <DataTable
+          columns={columnas}
+          data={data}
+          selectableRows
+          onSelectedRowsChange={handleChange}
+          paginationPerPage={5}
+          pagination
+          paginationComponentOptions={paginationComponentOptions}
+          fixedHeader
+        />
       </div>
-      
     </div>
   );
 }

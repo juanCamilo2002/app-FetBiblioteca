@@ -45,12 +45,19 @@
 .btnBack, .btnAdd{
     border: none;
     cursor: pointer;
+    text-decoration: none;
     background-color: var(--bg-green);
     padding: 14px 20px;
     border-radius: 5px;
     color: var(--bg-white);
-    font-size: 15px;
+    font-size: 15px; 
 }
+
+.btnBack:hover, .btnAdd:hover{
+    background-color: var(--bg-green-dark);
+}
+
+
 
 .iconArrow{
     margin-right: 10px;
