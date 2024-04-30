@@ -16,6 +16,8 @@ import Reports from './pages/admin/reportes/Reports';
 import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
 import UpdateUser from './pages/admin/UpdateUser/UpdateUser';
+import ProtectedRoute from './ProtectedRoute';
+
 
 
 
@@ -35,7 +37,7 @@ function App() {
 
 
 
-          <Route path='/admin' element={user && user.isAdmin ? <AdminLayout /> : <Navigate to={"/login"} />} >
+          <Route path='/admin' element={<ProtectedRoute isAdmin><AdminLayout /></ProtectedRoute> } >
             <Route path='dashboard' index element={<Dashboard />} />
             <Route path='books' index element={<Book />} />
             <Route path='reservations' index element={<Reservation />} />
