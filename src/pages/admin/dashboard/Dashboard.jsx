@@ -25,7 +25,7 @@ const Dashboard = () => {
 
         const fetchBookMostReserv = async () => {
             const data = await getBookMostReserv();
-            setLibro(data);
+            setLibro(data.title ? data.title : "No hay libros reservados");
         }
 
         fetchReservasStats();
