@@ -1,9 +1,22 @@
 import { GrSchedule } from 'react-icons/gr'
 import styles from './tablenews.module.css'
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { getReservas } from '../../../../util/api';
+import { formatterDate } from '../../../../util/formatterDate';
 
 const TableNews = () => {
+    const [newReservations, setNewReservations] = useState([]);
+
+    useEffect(()=>{
+        const fetchReservations = async () => {
+            const data = await getReservas(true);
+            setNewReservations(data);
+        };
+
+        fetchReservations();
+    },[]);
+
+    
     
     return (
         <div className={styles.container}>
@@ -23,142 +36,38 @@ const TableNews = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className={styles.delivered}>
+                        {
+                            newReservations.map((reservation)=>(
+                                <tr key={reservation._id} className={`${reservation.status === "Entregado" ? styles.delivered : reservation.status === "Pendiente" ? styles.pending : styles.cancelled}`}>
                             <td >
                                 <div className={styles.firstCell}>
-                                    Raul Ortega
+                                    {reservation.userId.name}
                                 </div>
                             </td>
                             <td>
                                 <div>
-                                    Anatomia
+                                    {reservation.bookId.title}
                                 </div>
                             </td>
                             <td>
                                 <div>
-                                    18/03/2024
+                                    {formatterDate(reservation.horaYfecha)}
                                 </div>
                             </td>
                             <td>
                                 <div>
-                                    21/03/2024
+                                    {formatterDate(reservation.fechaExpiracion)}
                                 </div>
                             </td>
                             <td>
                                 <div className={styles.lastCell}>
-                                    Entregado
+                                    {reservation.status}
                                 </div>
                             </td>
                         </tr>
-                        <tr className={styles.pending}>
-                            <td>
-                                <div className={styles.firstCell}>
-                                    Juan Alvarez
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    c++
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    19/03/2024
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    22/03/2024
-                                </div>
-                            </td>
-                            <td>
-                                <div className={styles.lastCell}>
-                                    Sin Entregar
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr className={styles.delivered}>
-                            <td >
-                                <div className={styles.firstCell}>
-                                    Camilo Ordonez
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    Fisionomia
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    18/03/2024
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    23/03/2024
-                                </div>
-                            </td>
-                            <td>
-                                <div className={styles.lastCell}>
-                                    Entregado
-                                </div>
-                            </td>
-                        </tr>
-                        <tr className={styles.pending}>
-                            <td>
-                                <div className={styles.firstCell}>
-                                    Santiago Ramos
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    Python
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    15/03/2024
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    18/03/2024
-                                </div>
-                            </td>
-                            <td>
-                                <div className={styles.lastCell}>
-                                    Sin entregar
-                                </div>
-                            </td>
-                        </tr>
-                        <tr className={styles.pending}>
-                            <td>
-                                <div className={styles.firstCell}>
-                                    el pp
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    el pp
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    el pp
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    el pp
-                                </div>
-                            </td>
-                            <td>
-                                <div className={styles.lastCell}>
-                                    el pp
-                                </div>
-                            </td>
-                        </tr>
+                       
+                            ))
+                        }
 
                     </tbody>
                 </table>

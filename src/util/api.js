@@ -5,7 +5,7 @@ export const createAxiosInstance = (accessToken, customConfig = {}) =>{
         baseURL:import.meta.env.VITE_API_URL,
         headers: {
             "Content-type": "application/json",
-            "accessToken": `Bearer ${accessToken}`,
+            "token": `Bearer ${accessToken}`,
         },
         ...customConfig,
     });
@@ -34,5 +34,65 @@ export const SignIn = async (userCredential, dispatch, history) =>{
         user.isAdmin ? history("/admin/dashboard") : history("/");
     } catch (error) {
         dispatch({type: "LOGIN_FAILURE", payload: error});
+    }
+};
+
+export const getReservasCountMonth = async () =>{
+    const customApiInstance = createAxiosInstance();
+    try {
+        const response = await customApiInstance.get("/reports/cantidadReMes");
+        return response.data;
+    } catch (error) {
+        console.error('error fetching data:', error);
+    }
+};
+
+export const getCountBooksRegister = async () =>{
+    const customApiInstance = createAxiosInstance();
+    try {
+        const response = await customApiInstance.get("/reports/cantidadLb");
+        return response.data;
+    } catch (error) {
+        console.error('error fetching data:', error);
+    }
+};
+
+export const getBookMostReserv = async () =>{
+    const customApiInstance = createAxiosInstance();
+    try {
+        const response = await customApiInstance.get("/reports/libroMasRe");
+        return response.data;
+    } catch (error) {
+        console.error('error fetching data:', error);
+    }
+};
+
+export const getBook = async (id) =>{
+    const customApiInstance = createAxiosInstance();
+    try {
+        const response = await customApiInstance.get(`/books/encontrar/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error('error fetching data:', error);
+    }
+};
+
+export const getReservas = async (query = false) =>{
+    const customApiInstance = createAxiosInstance(null, {params: {isNew: query}});
+    try {
+        const response = await customApiInstance.get("/reserva/listar");
+        return response.data;
+    } catch (error) {
+        console.error('error fetching data:', error);
+    }
+};
+
+export const getAllUsers = async (accessToken) =>{
+    const customApiInstance = createAxiosInstance(accessToken);
+    try {
+        const response = await customApiInstance.get("/users/");
+        return response.data;
+    } catch (error) {
+        console.error('error fetching data:', error);
     }
 };
