@@ -50,10 +50,11 @@
                         div{
                             margin-top: 5px;
                             padding: 10px;
+                            font-size: 13px;
                             display: flex;
                             justify-content: center;
                             align-items: center;
-                           min-width: 160px;
+                            min-width: 160px;
                         }
                         
                         .firstCell{
@@ -77,7 +78,13 @@
                     &.pending td div{
                         background-color: rgba(255, 68, 0, 0.5);
                     }
+                    &.cancelled td div{
+                        background-color: rgba(255, 0, 0, 0.5);
+                    }
                     
+                }
+                td:first-child {
+                    min-width: 220px;
                 }
             }
         }

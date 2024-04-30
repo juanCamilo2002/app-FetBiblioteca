@@ -1,20 +1,19 @@
 import styles from './kpi.module.css'
-import { FiBook } from 'react-icons/fi'
 
-const Kpi = () => {
+const Kpi = ({stat, name, label, icon}) => {
   return (
     <div className={styles.container}>
       <div className={styles.top}>
-        <span>Libros</span>
+        <span>{name}</span>
         <div className={styles.icon}>
-          <FiBook size={25} />
+          {icon}
         </div>
       </div>
       <div className={styles.center}>
-        <span>2500</span>
+        <span>{stat}</span>
       </div>
       <div className={styles.bottom}>
-        <span>Registrados de este mes </span>
+        <span>{label}</span>
       </div>
     </div>
   )

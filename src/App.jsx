@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Routes, Route, useNavigate, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import ViewBook from './pages/ViewBook/ViewBook';
@@ -23,10 +23,10 @@ function App() {
     <AsideProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={!user ? <Login /> : <Navigate to="/"/> } />
+          <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
           {/* user routes */}
-          <Route index path="/" element={<Home />} />
-          <Route path='/viewbook' element={<ViewBook />} />
+          <Route index path="/" element={user && !user.isAdmin ? <Home /> : <Navigate to={"/admin/dashboard"} />} />
+          <Route path='/viewbook' element={user && !user.isAdmin ? <ViewBook /> : <Navigate to={"/admin/dashboard"} />} />
 
 
 

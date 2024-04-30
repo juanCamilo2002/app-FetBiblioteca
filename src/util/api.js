@@ -36,3 +36,53 @@ export const SignIn = async (userCredential, dispatch, history) =>{
         dispatch({type: "LOGIN_FAILURE", payload: error});
     }
 };
+
+export const getReservasCountMonth = async () =>{
+    const customApiInstance = createAxiosInstance();
+    try {
+        const response = await customApiInstance.get("/reports/cantidadReMes");
+        return response.data;
+    } catch (error) {
+        console.error('error fetching data:', error);
+    }
+};
+
+export const getCountBooksRegister = async () =>{
+    const customApiInstance = createAxiosInstance();
+    try {
+        const response = await customApiInstance.get("/reports/cantidadLb");
+        return response.data;
+    } catch (error) {
+        console.error('error fetching data:', error);
+    }
+};
+
+export const getBookMostReserv = async () =>{
+    const customApiInstance = createAxiosInstance();
+    try {
+        const response = await customApiInstance.get("/reports/libroMasRe");
+        return response.data;
+    } catch (error) {
+        console.error('error fetching data:', error);
+    }
+};
+
+export const getBook = async (id) =>{
+    const customApiInstance = createAxiosInstance();
+    try {
+        const response = await customApiInstance.get(`/books/encontrar/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error('error fetching data:', error);
+    }
+};
+
+export const getReservas = async (query = false) =>{
+    const customApiInstance = createAxiosInstance( null, {params: {isNew: query}});
+    try {
+        const response = await customApiInstance.get("/reserva/listar");
+        return response.data;
+    } catch (error) {
+        console.error('error fetching data:', error);
+    }
+};
