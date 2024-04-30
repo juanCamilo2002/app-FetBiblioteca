@@ -14,16 +14,20 @@ const Dashboard = () => {
 
     useEffect(() => {
         const fetchReservasStats = async () => {
-            const data = await getReservasCountMonth();
-            const dataBooks = await getCountBooksRegister();
-            const dataResevMonth = await getBookMostReserv();
-            setReservasStats(data.cantidadReservas);
-            setTotalLibro(dataBooks.cantidadLibros);
-            setLibro(dataResevMonth.libroMasReservado);
+            try {
+                const data = await getReservasCountMonth();
+                const dataBooks = await getCountBooksRegister();
+                const dataResevMonth = await getBookMostReserv();
+                setReservasStats(data.cantidadReservas);
+                setTotalLibro(dataBooks.cantidadLibros);
+                setLibro(dataResevMonth.libroMasReservado);
+            } catch (error) {
+                console.log(error.response.data.message);
+            }
         };
 
         fetchReservasStats();
-     
+
     }, []);
 
     const stats = [
