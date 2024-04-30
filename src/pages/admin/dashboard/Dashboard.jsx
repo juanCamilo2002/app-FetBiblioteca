@@ -20,7 +20,7 @@ const Dashboard = () => {
                 const dataResevMonth = await getBookMostReserv();
                 setReservasStats(data.cantidadReservas);
                 setTotalLibro(dataBooks.cantidadLibros);
-                setLibro(dataResevMonth.libroMasReservado);
+                setLibro(dataResevMonth);
             } catch (error) {
                 console.log(error.response.data.message);
             }
@@ -29,26 +29,26 @@ const Dashboard = () => {
     }, []);
 
     const stats = [
-            // {
-            //     stat: reservasStats,
-            //     name: "Reservas",
-            //     label: "Reservas en el mes",
-            //     icon: <HiOutlineSaveAs size={25} />
-            // },
+        {
+            stat: reservasStats,
+            name: "Reservas",
+            label: "Reservas en el mes",
+            icon: <HiOutlineSaveAs size={25} />
+        },
         {
             stat: totalLibro,
             name: "Libros",
             label: "Libros registrados",
             icon: <GiBookshelf size={25} />
         },
-            // {
-            //     stat: libro,
-            //     name: "Libro",
-            //     label: "Libro más reservado",
-            //     icon: <FiBook size={25} />
-            // }
+        {
+            stat: libro.libroMasReservado,
+            name: "Libro",
+            label: "Libro más reservado",
+            icon: <FiBook size={25} />
+        }
     ];
-
+    console.log(libro)
     return (
         <div>
             <h2 className={styles.title}>Estadisticas</h2>

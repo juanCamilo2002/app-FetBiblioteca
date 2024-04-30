@@ -150,6 +150,21 @@ export const getAllUsers = async (accessToken) =>{
     }
 };
 
+export const createUser = async ( data, notification) => {
+    const customApiInstance = createAxiosInstance();
+    try {
+        const response = await customApiInstance.post("/auth/register", data);
+        notification.success("Usuario creado correctamente")
+        
+        return response.data;
+
+    } catch (error) {
+        notification.error(error.response.data.message)
+        console.error('error fetching data:', error);
+    }
+
+}
+
 // generar reporte
 export const getReport = async (accessToken, notification) =>{
     const customApiInstance = createAxiosInstance(accessToken);
