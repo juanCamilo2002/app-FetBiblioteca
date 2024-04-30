@@ -25,9 +25,7 @@ const Dashboard = () => {
                 console.log(error.response.data.message);
             }
         };
-
         fetchReservasStats();
-
     }, []);
 
     const stats = [
