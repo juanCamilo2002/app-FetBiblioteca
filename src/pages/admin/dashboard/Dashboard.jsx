@@ -25,8 +25,7 @@ const Dashboard = () => {
 
         const fetchBookMostReserv = async () => {
             const data = await getBookMostReserv();
-            const libro = await getBook(data.libroMasReservado);
-            setLibro(libro.title);
+            setLibro(data);
         }
 
         fetchReservasStats();
