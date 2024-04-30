@@ -1,20 +1,32 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./user.module.css";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { BsPlus } from "react-icons/bs";
 import { BiEdit } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import DataTable from "react-data-table-component";
+import { getAllUsers } from "../../../util/api";
+import { AuthContext } from "../../../context/AuthContext";
+
 function User() {
+  const [users, setUsers] = useState([]);
+  const { user } = useContext(AuthContext);
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const data = await getAllUsers(user.token);
+      setUsers(data);
+    };
+    fetchUsers();
+  },[]);
   const columnas = [
     {
       name: "Nombre",
-      selector: (row) => row.nombre,
+      selector: (row) => row.name,
       sortable: true,
     },
     {
       name: "Correo Electrónico",
-      selector: (row) => row.correo,
+      selector: (row) => row.email,
       sortable: true,
     },
     {
@@ -27,48 +39,17 @@ function User() {
       button: true,
       cell: () => (
         <div className={styles.btns}>
-          <Link>
-            <BiEdit size={23} className={styles.btnEdit} />
+          <Link className={styles.btnEdit}>
+            <BiEdit size={23}  />
           </Link>
-          <Link>
-            <RiDeleteBin6Line size={23} className={styles.btnDelete} />
+          <Link className={styles.btnDelete}>
+            <RiDeleteBin6Line size={23}  />
           </Link>
         </div>
       ),
     },
   ];
-  const data = [
-    {
-      nombre: "Joan Sebastian Salcedo Galindo",
-      correo: "joan_salcedoga@fet.edu.co",
-      telefono: "3115312202",
-    },
-    {
-      nombre: "Juan Camilo Ordoñez Morea",
-      correo: "juan_ordonezmo@fet.edu.co",
-      telefono: "3125352302",
-    },
-    {
-      nombre: "Brahian Stid Rojas Castillo",
-      correo: "brahian_rojasca@fet.edu.co",
-      telefono: "3205312452",
-    },
-    {
-      nombre: "Juan José Ramos Díaz",
-      correo: "juan_ramosdi@fet.edu.co",
-      telefono: "3184451832",
-    },
-
-    {
-      nombre: "Juan Pablo Hernández Cadena",
-      correo: "juan_hernandezca@fet.edu.co",
-      telefono: "3153432103",
-    },
-  ];
-  const handleChange = ({ selectRows }) => {
-    console.log("Seleccionar filas", selectRows);
-  };
-
+  
   const paginationComponentOptions = {
     rowsPerPageText: "Filas por página",
     rangeSeparatorText: "de",
@@ -88,9 +69,7 @@ function User() {
         </div>
         <DataTable
           columns={columnas}
-          data={data}
-          selectableRows
-          onSelectedRowsChange={handleChange}
+          data={users}
           paginationPerPage={5}
           pagination
           paginationComponentOptions={paginationComponentOptions}

@@ -5,7 +5,7 @@ export const createAxiosInstance = (accessToken, customConfig = {}) =>{
         baseURL:import.meta.env.VITE_API_URL,
         headers: {
             "Content-type": "application/json",
-            "accessToken": `Bearer ${accessToken}`,
+            "token": `Bearer ${accessToken}`,
         },
         ...customConfig,
     });
@@ -78,9 +78,19 @@ export const getBook = async (id) =>{
 };
 
 export const getReservas = async (query = false) =>{
-    const customApiInstance = createAxiosInstance( null, {params: {isNew: query}});
+    const customApiInstance = createAxiosInstance(null, {params: {isNew: query}});
     try {
         const response = await customApiInstance.get("/reserva/listar");
+        return response.data;
+    } catch (error) {
+        console.error('error fetching data:', error);
+    }
+};
+
+export const getAllUsers = async (accessToken) =>{
+    const customApiInstance = createAxiosInstance(accessToken);
+    try {
+        const response = await customApiInstance.get("/users/");
         return response.data;
     } catch (error) {
         console.error('error fetching data:', error);
