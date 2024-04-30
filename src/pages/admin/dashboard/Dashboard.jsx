@@ -29,24 +29,24 @@ const Dashboard = () => {
     }, []);
 
     const stats = [
-        // {
-        //     stat: reservasStats,
-        //     name: "Reservas",
-        //     label: "Reservas en el mes",
-        //     icon: <HiOutlineSaveAs size={25} />
-        // },
+        {
+            stat: reservasStats,
+            name: "Reservas",
+            label: "Reservas en el mes",
+            icon: <HiOutlineSaveAs size={25} />
+        },
         {
             stat: totalLibro,
             name: "Libros",
             label: "Libros registrados",
             icon: <GiBookshelf size={25} />
         },
-        // {
-        //     stat: libro,
-        //     name: "Libro",
-        //     label: "Libro más reservado",
-        //     icon: <FiBook size={25} />
-        // }
+        {
+            stat: libro,
+            name: "Libro",
+            label: "Libro más reservado",
+            icon: <FiBook size={25} />
+        }
     ];
 
     return (
