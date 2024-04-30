@@ -38,7 +38,7 @@ const TableNews = () => {
                     <tbody>
                         {
                             newReservations.map((reservation)=>(
-                                <tr className={`${reservation.status === "Entregado" ? styles.delivered : reservation.status === "Pendiente" ? styles.pending : styles.cancelled}`}>
+                                <tr key={reservation._id} className={`${reservation.status === "Entregado" ? styles.delivered : reservation.status === "Pendiente" ? styles.pending : styles.cancelled}`}>
                             <td >
                                 <div className={styles.firstCell}>
                                     {reservation.userId.name}

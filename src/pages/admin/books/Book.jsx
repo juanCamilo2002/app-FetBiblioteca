@@ -134,7 +134,6 @@ function Book() {
         <DataTable
           columns={columnas}
           data={data}
-          selectableRows
           onSelectedRowsChange={handleChange}
           paginationPerPage={5}
           pagination

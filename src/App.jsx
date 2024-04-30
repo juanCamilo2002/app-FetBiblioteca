@@ -25,7 +25,7 @@ function App() {
         <Routes>
           <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
           {/* user routes */}
-          <Route index path="/" element={user && !user.isAdmin ? <Home /> : <Navigate to={"/admin/dashboard"} />} />
+          <Route index path="/" element={!user?.isAdmin ? <Home /> : <Navigate to={"/admin/dashboard"} />} />
           <Route path='/viewbook' element={user && !user.isAdmin ? <ViewBook /> : <Navigate to={"/admin/dashboard"} />} />
 
 
