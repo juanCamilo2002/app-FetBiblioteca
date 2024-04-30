@@ -35,6 +35,26 @@ function User() {
       sortable: true,
     },
     {
+      name: "Semestre",
+      selector: (row) => row.semestre,
+      sortable: true,
+    },
+    {
+      name: "Código",
+      selector: (row) => row.codigo,
+      sortable: true,
+    },
+    {
+      name: "Programa Académico",
+      selector: (row) => row.programa,
+      sortable: true,
+    },
+    {
+      name: "Rol",
+      selector: (row) => row.isAdmin ? "Administrador" : "Usuario",
+      sortable: true,
+    },
+    {
       name: "Acciones",
       button: true,
       cell: () => (

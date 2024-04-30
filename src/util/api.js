@@ -77,8 +77,21 @@ export const getBook = async (id) =>{
     }
 };
 
+export const createBook = async (accessToken, data, notification) => {
+    const customApiInstance = createAxiosInstance(accessToken);
+    try {
+        const response = await customApiInstance.post("/books/agregar", data);
+        notification.success("Libro creado correctamente")
+        return response.data;
+
+    } catch (error) {
+        notification.error("Ha ocurrido un error")
+        console.error('error fetching data:', error);
+    }
+}
+
 export const getReservas = async (query = false) =>{
-    const customApiInstance = createAxiosInstance(null, {params: {isNew: query}});
+    const customApiInstance = createAxiosInstance(null, query && {params: {isNew: query}});
     try {
         const response = await customApiInstance.get("/reserva/listar");
         return response.data;
