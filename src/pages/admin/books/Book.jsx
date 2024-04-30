@@ -40,7 +40,7 @@ function Book() {
     const data = await getBooks();
     setBooks(data);
   };
-  const columnas = [
+  const columns = [
     {
       name: "Título",
       selector: (row) => row.title,
@@ -103,7 +103,7 @@ function Book() {
           </Link>
         </div>
         <DataTable
-          columns={columnas}
+          columns={columns}
           data={books}
           paginationPerPage={5}
           pagination

@@ -12,8 +12,11 @@ import UpdateBook from './pages/admin/UpdateBook/UpdateBook';
 import Book from './pages/admin/books/Book';
 import Reservation from './pages/admin/reservations/Reservation';
 import User from './pages/admin/users/User';
+import Reports from './pages/admin/reportes/Reports';
 import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
+
+
 
 
 
@@ -36,6 +39,7 @@ function App() {
             <Route path='books' index element={<Book />} />
             <Route path='reservations' index element={<Reservation />} />
             <Route path='users' index element={<User />} />
+            <Route path='reports' index element={<Reports />}/>
           </Route>
 
 
