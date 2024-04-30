@@ -1,9 +1,44 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./viewbook.module.css";
 import TopBar from "../../components/topbar/TopBar.jsx";
 import { FaRegHeart } from "react-icons/fa";
+import { useParams, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext.jsx";
+import { createReservation, getBook } from "../../util/api.js";
+import { toast } from "react-toastify";
+
 
 function ViewBook() {
+  const [book, setBook] = useState({}); 
+  const { user } = useContext(AuthContext);
+  const {id} = useParams();
+  const navigate = useNavigate();
+
+  const handleCreateReservation = async () => {
+    if(!user){
+      return navigate("/login");
+    }
+
+    
+
+    const reservationData = {
+      bookId: id,
+      userId: user._id,
+      tipoPrestamo: "Interno",
+      fechaExpiracion: new Date().setDate(new Date().getDate() + 7),
+    }
+    // create reservation
+    await createReservation(user.token, reservationData, toast);
+    return navigate("/");
+  }
+
+  useEffect(() => {
+    const fetchBook = async () => {
+      const book = await getBook(id);
+      setBook(book);
+    };
+    fetchBook();
+  }, []);
   return (
     <div>
       <TopBar />
@@ -11,40 +46,37 @@ function ViewBook() {
         <div className={styles.book}>
           <img
             className={styles.img}
-            src="https://marketplace.canva.com/EAFutLMZJKs/1/0/1003w/canva-portada-libro-novela-suspenso-elegante-negro-wxuYB_sJtMw.jpg"
+            src={book.image ? book.image : "https://via.placeholder.com/250x400/4543t4j"}
           />
-          <button type="text" className={styles.button}>
+          <button type="text" className={styles.button} onClick={handleCreateReservation}>
             Reservar
           </button>
         </div>
         <div className={styles.detail}>
           <h1 className={styles.title}>Sinopsis</h1>
           <p className={styles.description}>
-            Cruce de caminos, una novela de realismo mágico de la autora
-            colombiana Naira Gamboa, narra la historia de Juana, una joven con
-            la habilidad de ver espíritus, y su viaje de autodescubrimiento
-            junto a Alejo, un misterioso hombre con poderes similares.
+           {book.description}
           </p>
 
           <div className={styles.textDetail}>
             <h1 className={styles.title}>Autor:</h1>
-            <p>Naira Gamboa</p>
+            <p>{book.author}</p>
           </div>
           <div className={styles.textDetail}>
             <h1 className={styles.title}>Fecha de publicación:</h1>
-            <p>1999</p>
+            <p>{book.fechaPublicacion}</p>
           </div>
           <div className={styles.textDetail}>
-            <h1 className={styles.title}>Género:</h1>
-            <p>Realismo mágico, Ficción</p>
+            <h1 className={styles.title}>Materia:</h1>
+            <p>{book.materia}n</p>
           </div>
           <div className={styles.textDetail}>
             <h1 className={styles.title}>Páginas:</h1>
-            <p>100</p>
+            <p>{book.numberPages}</p>
           </div>
           <div className={styles.textDetail}>
             <h1 className={styles.title}>Editorial:</h1>
-            <p>No se sabe</p>
+            <p>{book.publisher}</p>
           </div>
 
           <a className={styles.favorite}>

@@ -25,7 +25,7 @@ function AddBook() {
       numberPages: "",
       language: "",
       description: "",
-
+      fechaPublicacion: "",
 
     },
     onSubmit: async (values) => {
@@ -140,6 +140,13 @@ function AddBook() {
               placeholder="descrpción"
               name="description"
               value={formik.values.description}
+              onChange={formik.handleChange}
+            />
+            <input
+              type="text"
+              placeholder="Fecha de publicación"
+              name="fechaPublicacion"
+              value={formik.values.fechaPublicacion}
               onChange={formik.handleChange}
             />
           </div>

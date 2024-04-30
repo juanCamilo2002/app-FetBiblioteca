@@ -126,6 +126,20 @@ export const getReservas = async (query = false) =>{
     }
 };
 
+export const createReservation = async (accessToken, data, notification) => {
+    const customApiInstance = createAxiosInstance(accessToken);
+    try {
+        const response = await customApiInstance.post("/reserva/agregar", data);
+        notification.success("Reserva creada correctamente")
+        
+        return response.data;
+
+    } catch (error) {
+        notification.error(error.response.data.message)
+        console.error('error fetching data:', error);
+    }
+}
+
 export const getAllUsers = async (accessToken) =>{
     const customApiInstance = createAxiosInstance(accessToken);
     try {
@@ -134,4 +148,28 @@ export const getAllUsers = async (accessToken) =>{
     } catch (error) {
         console.error('error fetching data:', error);
     }
+};
+
+// generar reporte
+export const getReport = async (accessToken, notification) =>{
+    const customApiInstance = createAxiosInstance(accessToken);
+  try {
+    const response = await customApiInstance.get("/reports/infoReservas", {
+      responseType: 'arraybuffer'
+    });
+    notification.success("Reporte generado correctamente");
+
+    const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Reservas.xlsx';
+    a.click();
+    window.URL.revokeObjectURL(url);
+
+    return response.data;
+  } catch (error) {
+    notification.error("Ha ocurrido un error");
+    console.error('error fetching data:', error);
+  }
 };

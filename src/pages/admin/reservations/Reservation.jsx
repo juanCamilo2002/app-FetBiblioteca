@@ -52,11 +52,11 @@ function Reservation() {
       cell: () => (
         <div className={styles.btns}>
           <Link className={styles.btnEdit}>
-            <BiEdit size={23}  />
+            <BiEdit size={20}  />
           </Link>
-          <Link className={styles.btnDelete} >
-            <RiDeleteBin6Line size={23}  />
-          </Link>
+          <button className={styles.btnDelete} >
+            <RiDeleteBin6Line size={20}  />
+          </button>
         </div>
       ),
     },

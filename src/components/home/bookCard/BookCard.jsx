@@ -18,7 +18,7 @@ const BookCard = ({ book }) => {
 
             </div>
             <div className={styles.bottom}>
-                <Link to="/viewbook" className={styles.btn}>Ver Más</Link>
+                <Link to={`/viewbook/${book._id}`} className={styles.btn}>Ver Más</Link>
             </div>
 
         </div>

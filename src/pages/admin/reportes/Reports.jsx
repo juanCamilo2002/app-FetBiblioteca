@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./reports.module.css";
 import DataTable from "react-data-table-component";
 import { IoIosArrowDown } from "react-icons/io";
+import { getReport } from "../../../util/api";
+import { AuthContext } from "../../../context/AuthContext";
+import { toast } from "react-toastify";
+import axios from "axios";
+
 function Reports() {
- 
+  const { user } = useContext(AuthContext);
+  const handleReport = async () => {
+    try {
+     await getReport(user.token, toast);
+
+    } catch (error) {
+      console.error('error fetching data:', error);
+      toast.error("Ha ocurrido un error")
+    }
+  }
   const columns = [
     {
       name: "Título",
@@ -68,11 +82,11 @@ function Reports() {
       <h1 className={styles.title}>Reportes</h1>
       <div className={styles.container}>
         <div className={styles.btns}>
-            <button>Relevancia<IoIosArrowDown size={16} className={styles.arrowDown} /></button>
-            <button>Fecha de Carga<IoIosArrowDown size={16} className={styles.arrowDown}/></button>
-            <button>Tipo<IoIosArrowDown size={16} className={styles.arrowDown}/></button>
+          <button>Relevancia<IoIosArrowDown size={16} className={styles.arrowDown} /></button>
+          <button>Fecha de Carga<IoIosArrowDown size={16} className={styles.arrowDown} /></button>
+          <button>Tipo<IoIosArrowDown size={16} className={styles.arrowDown} /></button>
         </div>
-        <DataTable 
+        <DataTable
           columns={columns}
           data={data}
           paginationPerPage={5}
@@ -80,9 +94,9 @@ function Reports() {
           paginationComponentOptions={paginationComponentOptions}
           fixedHeader
         />
-         <button className= {styles.btnReport} >General Reporte</button>
+        <button className={styles.btnReport} onClick={handleReport} >General Reporte</button>
       </div>
-     
+
     </div>
   );
 }
