@@ -48,7 +48,6 @@ const Dashboard = () => {
             icon: <FiBook size={25} />
         }
     ];
-    console.log(libro)
     return (
         <div>
             <h2 className={styles.title}>Estadisticas</h2>

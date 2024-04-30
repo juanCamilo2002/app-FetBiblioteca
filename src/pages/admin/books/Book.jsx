@@ -73,7 +73,6 @@ function Book() {
     },
     {
       name: "Acciones",
-      button: true,
       cell: (row) => (
         <div className={styles.btns}>
           <Link to={"/updatebook/"+row._id} className={styles.btnEdit} >

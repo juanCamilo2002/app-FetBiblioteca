@@ -16,7 +16,7 @@ function Adduser() {
       semestre: "",
       codigo: "",
       Programa: "",
-      isAdmin: null,
+      isAdmin: "",
 
     },
     onSubmit: async (values) => {

@@ -15,6 +15,7 @@ import User from './pages/admin/users/User';
 import Reports from './pages/admin/reportes/Reports';
 import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
+import UpdateUser from './pages/admin/UpdateUser/UpdateUser';
 
 
 
@@ -44,8 +45,9 @@ function App() {
 
 
           <Route path='/addbook' element={<AddBook />} />
-          <Route path='/adduser' element={<Adduser />} />
           <Route path='/updatebook/:id' element={<UpdateBook/>} />
+          <Route path='/adduser' element={<Adduser />} />
+          <Route path='/updateduser/:id' element={<UpdateUser />} />
 
          
          

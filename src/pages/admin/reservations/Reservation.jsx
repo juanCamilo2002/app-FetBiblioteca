@@ -48,7 +48,6 @@ function Reservation() {
     },
     {
       name: "Acciones",
-      button: true,
       cell: () => (
         <div className={styles.btns}>
           <Link className={styles.btnEdit}>

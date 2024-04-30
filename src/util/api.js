@@ -165,6 +165,30 @@ export const createUser = async ( data, notification) => {
 
 }
 
+export const getUser = async (id, accessToken) =>{
+    const customApiInstance = createAxiosInstance(accessToken);
+    try {
+        const response = await customApiInstance.get(`/users/find/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error('error fetching data:', error);
+    }
+};
+
+export const updateUser = async (accessToken, id, data, notification) => {
+    const customApiInstance = createAxiosInstance(accessToken);
+    try {
+        const response = await customApiInstance.put(`/users/update/${id}`, data);
+        notification.success("Usuario actualizado correctamente")
+        return response.data;
+
+    } catch (error) {
+        notification.error("Ha ocurrido un error")
+        console.error('error fetching data:', error);
+    }
+
+}
+
 // generar reporte
 export const getReport = async (accessToken, notification) =>{
     const customApiInstance = createAxiosInstance(accessToken);

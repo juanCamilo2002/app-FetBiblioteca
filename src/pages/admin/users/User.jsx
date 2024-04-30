@@ -56,10 +56,9 @@ function User() {
     },
     {
       name: "Acciones",
-      button: true,
-      cell: () => (
+      cell: (row) => (
         <div className={styles.btns}>
-          <Link className={styles.btnEdit}>
+          <Link className={styles.btnEdit} to={"/updateduser/"+row._id}>
             <BiEdit size={20}  />
           </Link>
           <button className={styles.btnDelete}>
