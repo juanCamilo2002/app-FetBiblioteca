@@ -1,41 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./book.module.css";
 import DataTable from "react-data-table-component";
 import { BsPlus } from "react-icons/bs";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { BiEdit } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import { getBooks } from "../../../util/api";
 
 function Book() {
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    const fetchBooks = async () => {
+      const data = await getBooks();
+      setBooks(data);
+
+    };
+    fetchBooks();
+  },[]);
+
+  console.log(books)
   const columnas = [
     {
       name: "Título",
-      selector: (row) => row.titulo,
+      selector: (row) => row.title,
       sortable: true,
     },
     {
       name: "Autor",
-      selector: (row) => row.autor,
+      selector: (row) => row.author,
       sortable: true,
     },
     {
       name: "Editorial",
-      selector: (row) => row.editorial,
+      selector: (row) => row.publisher,
       sortable: true,
     },
     {
-      name: "Categoría",
-      selector: (row) => row.categoria,
+      name: "Materia",
+      selector: (row) => row.materia,
       sortable: true,
     },
     {
-      name: "Estado",
-      selector: (row) => row.estado,
+      name: "Lenguaje",
+      selector: (row) => row.language,
       sortable: true,
     },
     {
-      name: "Stock",
-      selector: (row) => row.stock,
+      name: "Unidades",
+      selector: (row) => row.unidad,
       sortable: true,
     },
     {
@@ -43,78 +56,16 @@ function Book() {
       button: true,
       cell: () => (
         <div className={styles.btns}>
-          <Link to={"/updatebook"} >
-            <BiEdit size={23} className={styles.btnEdit}/>
+          <Link to={"/updatebook"} className={styles.btnEdit} >
+            <BiEdit  size={23}/>
           </Link>
-          <Link >
-            <RiDeleteBin6Line size={23} className={styles.btnDelete} />
+          <Link className={styles.btnDelete}>
+            <RiDeleteBin6Line size={23}  />
           </Link>
         </div>
       ),
     },
   ];
-  const data = [
-    {
-      titulo: "Corazón de Hielo",
-      autor: "Jazmín Martínez",
-      editorial: "Sin Fronteras",
-      categoria: "Ficción Clásica",
-      estado: "Nuevo",
-      stock: "3",
-    },
-    {
-      titulo: "Pensar con claridad",
-      autor: "James Clear",
-      editorial: "Planeta",
-      categoria: "Motivación",
-      estado: "Nuevo",
-      stock: "4",
-    },
-    {
-      titulo: "Corazón de Hielo",
-      autor: "Jazmín Martínez",
-      editorial: "Sin Fronteras",
-      categoria: "Ficción Clásica",
-      estado: "Nuevo",
-      stock: "3",
-    },
-    {
-      titulo: "Corazón de Hielo",
-      autor: "Jazmín Martínez",
-      editorial: "Sin Fronteras",
-      categoria: "Ficción Clásica",
-      estado: "Nuevo",
-      stock: "3",
-    },
-    {
-      titulo: "Corazón de Hielo",
-      autor: "Jazmín Martínez",
-      editorial: "Sin Fronteras",
-      categoria: "Ficción Clásica",
-      estado: "Nuevo",
-      stock: "3",
-    },
-    {
-      titulo: "Corazón de Hielo",
-      autor: "Jazmín Martínez",
-      editorial: "Sin Fronteras",
-      categoria: "Ficción Clásica",
-      estado: "Nuevo",
-      stock: "3",
-    },
-    {
-      titulo: "Corazón de Hielo",
-      autor: "Jazmín Martínez",
-      editorial: "Sin Fronteras",
-      categoria: "Ficción Clásica",
-      estado: "Nuevo",
-      stock: "3",
-    },
-  ];
-  const handleChange = ({ selectRows }) => {
-    console.log("Seleccionar filas", selectRows);
-  };
-
   const paginationComponentOptions = {
     rowsPerPageText: 'Filas por página',
     rangeSeparatorText: 'de',
@@ -133,8 +84,7 @@ function Book() {
         </div>
         <DataTable
           columns={columnas}
-          data={data}
-          onSelectedRowsChange={handleChange}
+          data={books}
           paginationPerPage={5}
           pagination
           paginationComponentOptions={paginationComponentOptions}
