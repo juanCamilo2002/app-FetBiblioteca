@@ -46,7 +46,7 @@ const TableNews = () => {
                             </td>
                             <td>
                                 <div>
-                                    {reservation.bookId.title}
+                                    {reservation?.bookId.title}
                                 </div>
                             </td>
                             <td>

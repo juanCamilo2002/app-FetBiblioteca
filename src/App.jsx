@@ -11,7 +11,7 @@ import UpdateBook from './pages/admin/UpdateBook/UpdateBook';
 import Book from './pages/admin/books/Book';
 import Reservation from './pages/admin/reservations/Reservation';
 import User from './pages/admin/users/User';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
 
 
@@ -39,7 +39,7 @@ function App() {
 
 
           <Route path='/addbook' element={<AddBook />} />
-          <Route path='/updatebook' element={<UpdateBook />} />
+          <Route path='/updatebook/:id' element={<UpdateBook />} />
 
          
 

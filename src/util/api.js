@@ -90,6 +90,32 @@ export const createBook = async (accessToken, data, notification) => {
     }
 }
 
+export const updateBook = async (accessToken, id, data, notification) => {
+    const customApiInstance = createAxiosInstance(accessToken);
+    try {
+        const response = await customApiInstance.put("/books/actualizar/" + id, data);
+        notification.success("Libro actualizado correctamente")
+        return response.data;
+
+    } catch (error) {
+        notification.error("Ha ocurrido un error")
+        console.error('error fetching data:', error);
+    }
+}
+
+export const deleteBook = async (accessToken, id, notification) => {
+    const customApiInstance = createAxiosInstance(accessToken);
+    try {
+        const response = await customApiInstance.delete("/books/borrar/" + id);
+        notification.success("Libro eliminado correctamente")
+        return response.data;
+
+    } catch (error) {
+        notification.error("Ha ocurrido un error")
+        console.error('error fetching data:', error);
+    }
+}
+
 export const getReservas = async (query = false) =>{
     const customApiInstance = createAxiosInstance(null, query && {params: {isNew: query}});
     try {

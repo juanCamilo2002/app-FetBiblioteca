@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Notification = () => {
   return (
     <div>
-      <ToastContainer position="bottom-right"/>
+      <ToastContainer position="bottom-left" theme="dark"/>
     </div>
   )
 }

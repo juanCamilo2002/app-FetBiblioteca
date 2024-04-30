@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./book.module.css";
 import DataTable from "react-data-table-component";
 import { BsPlus } from "react-icons/bs";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { BiEdit } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import { getBooks } from "../../../util/api";
+import { deleteBook, getBooks } from "../../../util/api";
+import { AuthContext } from "../../../context/AuthContext";
+import { toast } from "react-toastify";
+import ComponentModal from "../../../components/Modal/ComponentModal";
 
 function Book() {
   const [books, setBooks] = useState([]);
-
+  const [openModal, setOpenModal] = useState(false);
+  const [id, setId] = useState(null);
+  const { user } = useContext(AuthContext);
   useEffect(() => {
     const fetchBooks = async () => {
       const data = await getBooks();
@@ -19,7 +24,22 @@ function Book() {
     fetchBooks();
   },[]);
 
-  console.log(books)
+  const handleDelete = async (id) => {
+    setOpenModal(true);
+    setId(id);
+    
+  };
+
+  const closeModal = () => {
+    setOpenModal(false);
+  }
+
+  const onDeleted = async () => {
+    setOpenModal(false);
+    await deleteBook(user.token, id, toast);
+    const data = await getBooks();
+    setBooks(data);
+  };
   const columnas = [
     {
       name: "Título",
@@ -54,14 +74,14 @@ function Book() {
     {
       name: "Acciones",
       button: true,
-      cell: () => (
+      cell: (row) => (
         <div className={styles.btns}>
-          <Link to={"/updatebook"} className={styles.btnEdit} >
-            <BiEdit  size={23}/>
+          <Link to={"/updatebook/"+row._id} className={styles.btnEdit} >
+            <BiEdit  size={20}/>
           </Link>
-          <Link className={styles.btnDelete}>
-            <RiDeleteBin6Line size={23}  />
-          </Link>
+          <button className={styles.btnDelete} onClick={() => handleDelete(row._id)}>
+            <RiDeleteBin6Line size={20}  />
+          </button>
         </div>
       ),
     },
@@ -91,6 +111,7 @@ function Book() {
           fixedHeader
         />
       </div>
+      <ComponentModal open={openModal} close={closeModal} onDelete={onDeleted}/>
     </div>
   );
 }
