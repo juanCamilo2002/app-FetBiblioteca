@@ -47,7 +47,6 @@ const Dashboard = () => {
         }
     ];
 
-    console.log({ reservasStats, totalLibro, libro });
     return (
         <div>
             <h2 className={styles.title}>Estadisticas</h2>
