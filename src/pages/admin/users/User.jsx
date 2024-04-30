@@ -82,7 +82,7 @@ function User() {
       <h1 className={styles.titleBook}>Usuarios</h1>
       <div className={styles.container}>
         <div className={styles.btnContainer}>
-          <Link className={styles.btnAddUser}>
+          <Link to={"/adduser"} className={styles.btnAddUser}>
             <BsPlus size={20} />
             Agregar Usuario
           </Link>
