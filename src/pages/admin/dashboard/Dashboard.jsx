@@ -15,22 +15,15 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchReservasStats = async () => {
             const data = await getReservasCountMonth();
+            const dataBooks = await getCountBooksRegister();
+            const dataResevMonth = await getBookMostReserv();
             setReservasStats(data.cantidadReservas);
+            setTotalLibro(dataBooks.cantidadLibros);
+            setLibro(dataResevMonth.libroMasReservado);
         };
-
-        const fetchTotalLibro = async () => {
-            const data = await getCountBooksRegister();
-            setTotalLibro(data.cantidadLibros);
-        };
-
-        const fetchBookMostReserv = async () => {
-            const data = await getBookMostReserv();
-            setLibro(data.title ? data.title : "No hay libros reservados");
-        }
 
         fetchReservasStats();
-        fetchTotalLibro();
-        fetchBookMostReserv();
+     
     }, []);
 
     const stats = [
