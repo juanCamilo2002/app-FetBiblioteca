@@ -29,7 +29,7 @@ export const SignIn = async (userCredential, dispatch, history) =>{
     const customApiInstance = createAxiosInstance();
     try {
         const response = await customApiInstance.post("/auth/login",userCredential);
-        const user = response.data;
+        const user = response.data.data;
         dispatch({type: "LOGIN_SUCCESS", payload: user});
         user.isAdmin ? history("/admin/dashboard") : history("/");
     } catch (error) {

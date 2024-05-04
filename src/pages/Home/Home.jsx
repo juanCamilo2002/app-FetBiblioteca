@@ -16,7 +16,6 @@ const Home = () => {
     }
     fetchBooks();
   }, []);
-  console.log(books);
   return (
     <div>
       <TopBar />
